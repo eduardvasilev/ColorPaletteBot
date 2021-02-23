@@ -42,7 +42,7 @@ namespace ColorPaletteBot
                 using (var saveImageStream = File.Open(filename, FileMode.Create))
                 {
                     await _client.DownloadFileAsync(file.FilePath, saveImageStream);
-                    image = Bitmap.FromStream(saveImageStream);
+                    image = Image.FromStream(saveImageStream);
                     path = saveImageStream.Name;
                 }
 
@@ -63,7 +63,7 @@ namespace ColorPaletteBot
                 for (int y = 0; y < image.Height; y++)
                 {
                     Color pixelColor = image.GetPixel(x, y);
-                    if (pixelColor.GetBrightness() > 0.1 && pixelColor.GetBrightness() < 0.9)
+                    if (pixelColor.GetBrightness() > 0.2 && pixelColor.GetBrightness() < 0.8)
                     {
                         if (cache.TryGetValue(pixelColor, out int value))
                         {
